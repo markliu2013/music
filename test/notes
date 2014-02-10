@@ -1,0 +1,2 @@
+cd C:\Users\mark\WebstormProjects\music
+mongod -dbpath db

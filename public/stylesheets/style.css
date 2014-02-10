@@ -1,0 +1,330 @@
+/* Clear Floats Without Structural Markup */
+.clearfix:before, .clearfix:after {
+	content: '.';
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	font-size: 0;
+	line-height: 0;
+	width: 0;
+	height: 0;
+}
+.clearfix:after {
+	clear: both;
+}
+.clearfix {
+	zoom: 1;
+}
+/* General */
+body {
+	margin: 0;
+	padding: 0;
+	background: #eee;
+	font-family: "Arial", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	background: #aaa;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+img {
+	border: none;
+}
+.hidden {
+	width: 0;
+	height: 0;
+}
+#page {
+	position: relative;
+	margin: 0 auto;
+	padding: 50px 0 0 0;
+	width: 960px;
+}
+#player {
+	margin: 0 auto;
+	width: 310px;
+}
+#player-controls {
+	position: relative;
+}
+#player-controls .bg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+#player-controls .bg .top {
+	height: 50%;
+	background: #353755;
+	border-radius: 5px 5px 0 0;
+}
+#player-controls .bg .bottom {
+	height: 50%;
+	background: #0e0f16;
+	border-radius: 0 0 5px 5px;
+}
+#player-controls ul {
+	list-style: none;
+	margin: 0;
+	padding: 10px 10px 10px 10px;
+}
+#player-controls ul li {
+	float: left;
+	padding-top: 7px;
+}
+#player-controls ul li.jp-play {
+	padding-top: 0;
+}
+#player-controls ul li a {
+	display: block;
+	width: 35px;
+	height: 35px;
+}
+#player-controls ul li.jp-stop a {
+	background: url("../images/stop.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-stop:hover a {
+	background: url("../images/stop-hover.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-stop.pressing a {
+	background: url("../images/stop-pressing.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-stop.stopped a {
+	background: url("../images/stopped.png") 0 0 no-repeat;
+	cursor: default;
+}
+#player-controls ul li.jp-prev a {
+	background: url("../images/prev.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-prev:hover a {
+	background: url("../images/prev-hover.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-prev.pressing a {
+	background: url("../images/prev-pressing.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-play a {
+	width: 50px;
+	height: 50px;
+}
+#player-controls ul li.jp-play.pause a {
+	background: url("../images/play.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-play.pause:hover a {
+	background: url("../images/play-hover.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-play.pause.pressing a {
+	background: url("../images/play-pressing.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-play.playing a {
+	background: url("../images/pause.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-play.playing:hover a {
+	background: url("../images/pause-hover.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-play.playing.pressing a {
+	background: url("../images/pause-pressing.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-next a {
+	background: url("../images/next.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-next:hover a {
+	background: url("../images/next-hover.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-next.pressing a {
+	background: url("../images/next-pressing.png") 0 0 no-repeat;
+}
+.music-file-button {
+	background: url("../images/upload.png") 0 0 no-repeat;
+	border: none;
+	cursor: pointer;
+}
+.music-file-button input {
+	cursor: pointer;
+}
+.music-file-button:hover {
+	background: url("../images/upload-hover.png") 0 0 no-repeat;
+}
+#player-controls ul li.jp-upload.pressing .music-file-button {
+	background: url("../images/upload-pressing.png") 0 0 no-repeat;
+}
+#player-controls ul li a {
+	display: block;
+}
+#player-list {
+	padding: 10px;
+	background: #3e4161;
+	font-size: 12px;
+	border-radius: 5px;
+}
+#player-list ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	color: #7578ab;
+	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+	-moz-user-select: none; /* mozilla browsers */
+	-khtml-user-select: none; /* webkit (konqueror) browsers */
+	-ms-user-select: none; /* IE10+ */
+}
+#player-list ul li {
+	padding: 0 5px 0 10px;
+	line-height: 24px;
+	font-weight: 700;
+	cursor: default;
+}
+#player-list ul li span {
+	display: block;
+}
+#player-list ul li .num {
+	float: left;
+	width: 15px;
+}
+#player-list ul li .name {
+	float: left;
+	width: 230px;
+}
+#player-list ul li .duration {
+	float: right;
+	width: 25px;
+}
+#player-list ul li.odd {
+	background-color: #2a2b3f;
+	border: 1px solid #2a2b3f;
+}
+#player-list ul li.even {
+	background-color: #242639;
+	border: 1px solid #242639;
+}
+#player-list ul li.playing {
+	background: url("../images/arrow.png") 5px 50% no-repeat;
+	color: #fff;
+}
+#player-list ul li.selected {
+	color: #fff;
+	border: 1px solid #fff;
+	background-color: #606383;
+}
+
+/* @group progress bar */
+.jp-progress {
+	width: 100%;
+	height: 15px;
+	background: #5a5d8e;
+}
+.jp-progress .jp-seek-bar {
+	height: 100%;
+	background: #5a5d8e;
+	cursor: pointer;
+}
+.jp-progress .jp-seek-bar .jp-play-bar {
+	height: 100%;
+	background: #2bb1e9;
+}
+.jp-progress .jp-seeking-bg {
+	background: url("../images/jplayer.blue.monday.seeking.gif") 0 0 repeat;
+}
+/* @group volumn bar */
+.jp-volume-bar {
+	position: absolute;
+	top: 15px;
+	right: 10px;
+	width: 70px;
+	height: 5px;
+	cursor: pointer;
+	background: #242639;
+}
+.jp-volume-bar-value {
+	height: 5px;
+	background: #fff;
+}
+.jp-mute {
+	position: absolute;
+	top: 12px;
+	right: 85px;
+	width: 18px;
+	height: 12px;
+	background: url("../images/volumn.png") 0 0 no-repeat;
+	text-indent: -9999em;
+}
+#upload-form {
+
+}
+
+#queue {
+	position: absolute;
+	top: 50px;
+	right: 0;
+	overflow: auto;
+	width: 200px;
+	height: 300px;
+	border: 10px solid #3e4161;
+	border-radius: 5px;
+	background: #2a2b3f;
+}
+#queue button {
+	position: absolute;
+	bottom: 0;
+	left: 60px;
+}
+#uploadifive-music-file-file-0 {
+	margin-top: 0;
+}
+.uploadifive-queue-item {
+	border-bottom: none;
+}
+#delete-form {
+	display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<title><%= title %></title>
+	<link href="/stylesheets/uploadifive.css" rel="stylesheet" type="text/css" />
+	<link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/javascripts/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.jplayer.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.uploadifive.js"></script>
+	<script type="text/javascript" src="/javascripts/master.js"></script>
+</head>
+<body>
+	<div id="page">
+		<div id="player">
+			<div id="jquery-player" class="hidden"></div>
+			<div id="player-container">
+				<div class="jp-progress">
+					<div class="jp-seek-bar">
+						<div class="jp-play-bar"></div>
+					</div>
+				</div>
+				<div id="player-controls">
+					<div class="bg">
+						<div class="top"></div>
+						<div class="bottom"></div>
+					</div>
+					<div class="jp-volume-bar">
+						<div class="jp-volume-bar-value"></div>
+					</div>
+					<a href="javascript:;" class="jp-mute" title="静音">mute</a>
+					<ul class="clearfix">
+						<li class="jp-stop stopped"><a href="javascript:;" title="停止"></a></li>
+						<li class="jp-prev"><a href="javascript:;" title="前一首"></a></li>
+						<li class="jp-play pause"><a href="javascript:;" title="播放"></a></li>
+						<li class="jp-next"><a href="javascript:;" title="下一首"></a></li>
+						<li class="jp-upload"><input id="music-file" type="file" name="musicFile" multiple="true" title="上传" /></li>
+					</ul>
+				</div><!-- end player-controls -->
+			</div>
+			<div id="player-list">
+				<ul>
+					<% for (var i=0; i<musics.length; i++) { %>
+					<li id="<%= musics[i].id %>" class="<% var odd_or_even; i%2==0 ? odd_or_even = 'odd' : odd_or_even = 'even' %><%= odd_or_even %><% if (i==0) { %> <%= 'selected' %><%}%> clearfix" url="<%= musics[i].url %>">
+						<span class="num"><%= i+1 %>.</span>
+						<span class="name"><%= musics[i].artist %> - <%= musics[i].name %></span>
+						<span class="duration"></span>
+					</li>
+					<% } %>
+				</ul>
+				<form method="post" id="delete-form">
+					<input type="hidden" value="DELETE" name="_method" />
+				</form>
+			</div><!-- end player-list -->
+		</div><!-- end player -->
+		<div id="queue"><button>开始上传</button></div>
+	</div><!-- end page -->
+</body>
+</html>
