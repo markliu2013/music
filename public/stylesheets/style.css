@@ -187,6 +187,9 @@ img {
 #player-list ul li .name {
 	float: left;
 	width: 230px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 #player-list ul li .duration {
 	float: right;
