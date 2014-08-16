@@ -46,8 +46,8 @@ exports.upload = function (req, res) {
 			music1.url = rootURL + "/mp3/" + target_name;
 			music1.targetName = target_name;
 			music1.save(function() {mongoose.disconnect();});
+            res.send(music1);
 		});
-		res.send('Success!');
 	});
 }
 exports.delete = function (req, res) {
@@ -56,7 +56,8 @@ exports.delete = function (req, res) {
 			fs.unlink(target_dir + doc.targetName, function(err) {
 				if (err) throw err;
 			});
-			res.redirect('/');
+			//res.redirect('/');
+			res.json({success:1});
 		})
 	});
 }

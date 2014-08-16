@@ -42,16 +42,13 @@
 			<div id="player-list">
 				<ul>
 					<% for (var i=0; i<musics.length; i++) { %>
-					<li title="<%= musics[i].name %>" id="<%= musics[i].id %>" class="<% var odd_or_even; i%2==0 ? odd_or_even = 'odd' : odd_or_even = 'even' %><%= odd_or_even %><% if (i==0) { %> <%= 'selected' %><%}%> clearfix" url="<%= musics[i].url %>">
+					<li id="<%= musics[i].id %>" class="<% var odd_or_even; i%2==0 ? odd_or_even = 'odd' : odd_or_even = 'even' %><%= odd_or_even %><% if (i==0) { %> <%= 'selected' %><%}%> clearfix" url="<%= musics[i].url %>">
 						<span class="num"><%= i+1 %>.</span>
 						<span class="name"><%= musics[i].artist %> - <%= musics[i].name %></span>
 						<span class="duration"></span>
 					</li>
 					<% } %>
 				</ul>
-				<form method="post" id="delete-form">
-					<input type="hidden" value="DELETE" name="_method" />
-				</form>
 			</div><!-- end player-list -->
 		</div><!-- end player -->
 		<div id="queue"><button>开始上传</button></div>

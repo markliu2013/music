@@ -123,8 +123,8 @@ $(document).ready(function () {
 				className = 'odd';
 			}
 			var itemHtml = '<li id="' + data._id + '" class="' + className + ' clearfix" url="' + data.url + '">';
-			itemHtml += '<span class="num">'+($lastItem.index()+1)+'</span>';
-			itemHtml += '<span class="name">' + data.artist + '-' + data.name + '</span>';
+			itemHtml += '<span class="num">'+($lastItem.index()+2)+'.</span>';
+			itemHtml += '<span class="name">' + data.artist + ' - ' + data.name + '</span>';
 			itemHtml += '<span class="duration"></span>';
 			$('#player-list ul').append(itemHtml);
 		}
@@ -143,10 +143,14 @@ $(document).ready(function () {
 			var msg = "确定删除" + "吗？"
 			if ($("#player-list ul li.selected").length > 0) {
 				if (window.confirm(msg) == true) {
-					var id = $("#player-list ul li.selected").attr("id");
-					$("#delete-form").attr("action", id);
-					$("#delete-form").submit();
-				} else {
+					var musicId = $("#player-list ul li.selected").attr("id");
+					$.ajax({
+						url: musicId,
+						type: 'DELETE',
+						success: function(result) {
+							$("#player-list ul li.selected").remove();
+						}
+					});
 					return;
 				}
 			}
