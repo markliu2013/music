@@ -8,11 +8,18 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
+var domain = require('domain');
 
 var env = process.env.NODE_ENV || 'development'
 var config = require('./config/config')[env]
 
 var app = express();
+
+
+var domain = domain.create();
+domain.on('error',function(err){
+    console.log(err);
+});
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -55,7 +62,9 @@ mongoose.connection.on('disconnected', function () {
 	connect()
 })
 
-
-http.createServer(app).listen(app.get('port'), function () {
-	console.log('Express server listening on port ' + app.get('port'));
+domain.run(function() {
+	http.createServer(app).listen(app.get('port'), function () {
+		console.log('Express server listening on port ' + app.get('port'));
+	});
 });
+
