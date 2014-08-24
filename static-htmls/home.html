@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<title>Home Page</title>
+	<link href="css/master.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.jplayer.js"></script>
+	<script type="text/javascript" src="js/master.js"></script>
+</head>
+<body>
+	<div id="player">
+		<div id="jquery-player" class="hidden"></div>
+		<div id="player-container">
+			<div class="jp-progress">
+				<div class="jp-seek-bar">
+					<div class="jp-play-bar"></div>
+				</div>
+			</div>
+			<div id="player-controls">
+				<div class="bg">
+					<div class="top"></div>
+					<div class="bottom"></div>
+				</div>
+				<div class="jp-volume-bar">
+					<div class="jp-volume-bar-value"></div>
+				</div>
+				<a href="javascript:;" class="jp-mute" title="静音">mute</a>
+				<ul class="clearfix">
+					<li class="jp-stop stopped"><a href="javascript:;" title="停止"></a></li>
+					<li class="jp-prev"><a href="javascript:;" title="前一首"></a></li>
+					<li class="jp-play pause"><a href="javascript:;" title="播放"></a></li>
+					<li class="jp-next"><a href="javascript:;" title="下一首"></a></li>
+					<li class="jp-upload"><a href="javascript:;" title="上传"></a></li>
+				</ul>
+			</div><!-- end player-controls -->
+		</div>
+		<div id="player-list">
+			<ul>
+				<li class="odd clearfix selected" url="http://127.0.0.1/music/mp3/1.mp3">
+					<span class="num">1.</span>
+					<span class="name">Klaus Badelt - Special Agent Mahone</span>
+					<span class="duration">1:23</span>
+				</li>
+				<li class="even clearfix" url="http://127.0.0.1/music/mp3/2.mp3">
+					<span class="num">2.</span>
+					<span class="name">The Wanted - Glad You Came</span>
+					<span class="duration">3:18</span>
+				</li>
+				<li class="odd clearfix" url="http://127.0.0.1/music/mp3/3.mp3">
+					<span class="num">3.</span>
+					<span class="name">Eternity ∞ - Wonderful World</span>
+					<span class="duration">3:24</span>
+				</li>
+				<li class="even clearfix" url="http://127.0.0.1/music/mp3/4.mp3">
+					<span class="num">4.</span>
+					<span class="name">钟汉良 - 天涯明月刀</span>
+					<span class="duration">5:32</span>
+				</li>
+				<li class="even clearfix" url="http://127.0.0.1/music/mp3/5.mp3">
+					<span class="num">5.</span>
+					<span class="name">李行亮,雨宗林 - 愿得一人心</span>
+					<span class="duration">4:43</span>
+				</li>
+			</ul>
+		</div><!-- end player-list -->
+	</div><!-- end player -->
+</body>
+</html>
