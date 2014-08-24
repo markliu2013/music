@@ -28,8 +28,7 @@ $(document).ready(function () {
 		supplied: "mp3",
 		cssSelectorAncestor: '#player-container'
 	});
-	//可以考虑使用事件委托
-	$("#player-list ul li").live("dblclick", function () {
+	$("#player-list ul").delegate("li", "dblclick", function () {
 		$("#player-list ul li.selected").removeClass("selected");
 		$(this).addClass("selected");
 		$("#player-list ul li.playing").removeClass("playing");
@@ -42,17 +41,17 @@ $(document).ready(function () {
 		$("#player-controls ul li.jp-play").addClass("playing");
 		$("#player-controls ul li.jp-stop.stopped").removeClass("stopped");
 	});
-	$("#player-list ul li").live("click", function (e) {
+	$("#player-list ul").delegate("li", "click", function (e) {
 		$("#player-list ul li.selected").removeClass("selected");
 		$(this).addClass("selected");
 		e.stopPropagation();
 	});
-	$("#player-controls ul li.jp-play.playing").live("click", function () {
+	$("#player-controls ul li.jp-play.playing").bind("click", function () {
 		$("#jquery-player").jPlayer("pause");
 		$(this).removeClass("playing");
 		$(this).addClass("pause");
 	});
-	$("#player-controls ul li.jp-play.pause").live("click", function () {
+	$("#player-controls ul li.jp-play.pause").bind("click", function () {
 		if ($("#player-list ul li.playing").length < 1) {
 			$("#player-list ul li.selected").addClass("playing")
 			$("#jquery-player").jPlayer("setMedia", {
