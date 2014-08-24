@@ -186,7 +186,10 @@ img {
 }
 #player-list ul li .name {
 	float: left;
+	overflow: hidden;
 	width: 230px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 #player-list ul li .duration {
 	float: right;
@@ -251,10 +254,6 @@ img {
 	background: url("../images/volumn.png") 0 0 no-repeat;
 	text-indent: -9999em;
 }
-#upload-form {
-
-}
-
 #queue {
 	position: absolute;
 	top: 50px;
