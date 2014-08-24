@@ -1,6 +1,6 @@
 # NodeJS Music Player
 
-This is a music player build using NodeJS and MongoDB.
+This is a music player built use [NodeJS](http://nodejs.org/) and [MongoDB](http://mongodb.org/).
 Read the [blog article](http://www.markliublog.com/) about how it built or [try to play](http://www.markliublog.com:3000).
 If you have any suggestion or bug to post, [click here](https://github.com/markliu2013/music/issues/new).
 
@@ -20,7 +20,7 @@ Then visit [http://localhost:3000/](http://localhost:3000/)
 
 ## Related modules
 
-1. [express](http://expressjs.com/) MVC skeleton.
+1. [express](http://expressjs.com/) - MVC skeleton.
 2. [ejs](http://embeddedjs.com/) - View Template.
 3. [mongoose](http://mongoosejs.com/) - Database Driver for NodeJS
 4. [formidable](https://www.npmjs.org/package/formidable) - Parse file uploads data
