@@ -195,11 +195,11 @@ img {
 	float: right;
 	width: 25px;
 }
-#player-list ul li.odd {
+#player-list ul li:nth-child(2n) {
 	background-color: #2a2b3f;
 	border: 1px solid #2a2b3f;
 }
-#player-list ul li.even {
+#player-list ul li:nth-child(2n+1) {
 	background-color: #242639;
 	border: 1px solid #242639;
 }
