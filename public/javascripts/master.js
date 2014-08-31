@@ -109,10 +109,7 @@ $(document).ready(function () {
 		buttonClass: 'music-file-button',
 		queueSizeLimit: 3,
 		removeCompleted: true,
-		onQueueComplete: function (queueData) {
-
-		},
-		'onUploadComplete': function (file, data, response) {
+		onUploadComplete: function (file, data, response) {
 			var data = $.parseJSON(data);
 			var $lastItem = $('#player-list ul li:last-child');
 			var className = '';
@@ -126,6 +123,11 @@ $(document).ready(function () {
 			itemHtml += '<span class="name">' + data.artist + ' - ' + data.name + '</span>';
 			itemHtml += '<span class="duration"></span>';
 			$('#player-list ul').append(itemHtml);
+		},
+		onError: function(errorType, file) {
+			setTimeout(function() {
+				$("#music-file").uploadifive('cancel', file);
+			}, 3000);
 		}
 	});
 	$("#queue button").bind("click", function () {
