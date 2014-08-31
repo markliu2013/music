@@ -9,7 +9,7 @@ If you have any suggestion or bug to post, [click here](https://github.com/markl
 **NOTE:** Firstly you need to install [MongoDB](http://www.markliublog.com/installing-mongodb-on-linux.html) and [NodeJS](https://github.com/joyent/node/wiki/installation).
 
 ```sh
-  $ git clone https://github.com/markliu2013/music.git
+  $ git clone --depth 1 https://github.com/markliu2013/music.git
   $ npm install
   $ node app.js or nohup node app.js &
 ```
