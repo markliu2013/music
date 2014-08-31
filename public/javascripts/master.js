@@ -142,22 +142,25 @@ $(document).ready(function () {
 	});
 	$(document).bind("keydown", function (event) {
 		if (event.keyCode == 46) {
-			var msg = "确定删除" + "吗？"
-			if ($("#player-list ul li.selected").length > 0) {
-				if (window.confirm(msg) == true) {
-					var musicId = $("#player-list ul li.selected").attr("id");
-					$.ajax({
-						url: musicId,
-						type: 'DELETE',
-						success: function(result) {
-							$("#player-list ul li.selected").remove();
-						}
-					});
-					return;
-				}
+			if ($("#player-list ul li.selected").length < 1) {
+				return;
 			}
-		}
-		if (event.keyCode == 13) {//enter
+			var msg = "确定删除" + "吗？"
+			if (window.confirm(msg) == true) {
+				var musicId = $("#player-list ul li.selected").attr("id");
+				$.ajax({
+					url: musicId,
+					type: 'DELETE',
+					success: function(result) {
+						$("#player-list ul li.selected").remove();
+					}
+				});
+				return;
+			}
+		} else if (event.keyCode == 13) {//enter
+			if ($("#player-list ul li.selected").length < 1) {
+				return;
+			}
 			var url = $("#player-list ul li.selected").attr("url");
 			$("#jquery-player").jPlayer("setMedia", {
 				mp3: url
@@ -167,24 +170,30 @@ $(document).ready(function () {
 			$("#player-controls ul li.jp-play").removeClass("pause");
 			$("#player-controls ul li.jp-play").addClass("playing");
 			$("#player-controls ul li.jp-stop.stopped").removeClass("stopped");
-		}
-		if (event.keyCode == 38) {//up
-			var index_selected = $("#player-list ul li.selected").index();
-			$("#player-list ul li.selected").removeClass("selected");
-			if (index_selected <= 0) {
-				$("#player-list ul li").last().addClass("selected");
+		} else if (event.keyCode == 38) {//up
+			if ($("#player-list ul li.selected").length < 1) {
+				$("#player-list ul li:last-child").addClass("selected");
 			} else {
-				$("#player-list ul li").eq(index_selected - 1).addClass("selected");
+				var index_selected = $("#player-list ul li.selected").index();
+				$("#player-list ul li.selected").removeClass("selected");
+				if (index_selected <= 0) {
+					$("#player-list ul li:last-child").addClass("selected");
+				} else {
+					$("#player-list ul li").eq(index_selected - 1).addClass("selected");
+				}
 			}
-		}
-		if (event.keyCode == 40) {//down
-			var list_size = $("#player-list ul li").size();
-			var index_selected = $("#player-list ul li.selected").index();
-			$("#player-list ul li.selected").removeClass("selected");
-			if (index_selected >= list_size - 1) {
-				$("#player-list ul li").first().addClass("selected");
+		} else if (event.keyCode == 40) {//down
+			if ($("#player-list ul li.selected").length < 1) {
+				$("#player-list ul li:first-child").addClass("selected");
 			} else {
-				$("#player-list ul li").eq(index_selected + 1).addClass("selected");
+				var list_size = $("#player-list ul li").size();
+				var index_selected = $("#player-list ul li.selected").index();
+				$("#player-list ul li.selected").removeClass("selected");
+				if (index_selected >= list_size - 1) {
+					$("#player-list ul li:first-child").addClass("selected");
+				} else {
+					$("#player-list ul li").eq(index_selected + 1).addClass("selected");
+				}
 			}
 		}
 	})
