@@ -46,22 +46,23 @@ $(document).ready(function () {
 		$(this).addClass("selected");
 		e.stopPropagation();
 	});
-	$("#player-controls ul li.jp-play.playing").bind("click", function () {
-		$("#jquery-player").jPlayer("pause");
-		$(this).removeClass("playing");
-		$(this).addClass("pause");
-	});
-	$("#player-controls ul li.jp-play.pause").bind("click", function () {
-		if ($("#player-list ul li.playing").length < 1) {
-			$("#player-list ul li.selected").addClass("playing")
-			$("#jquery-player").jPlayer("setMedia", {
-				mp3: $("#player-list ul li.selected").attr("url")
-			});
+	$("#player-controls ul li.jp-play").bind('click', function() {
+		if ($(this).hasClass('playing')) {
+			$("#jquery-player").jPlayer("pause");
+			$(this).removeClass("playing");
+			$(this).addClass("pause");
+		} else if ($(this).hasClass('pause')) {
+			if ($("#player-list ul li.playing").length < 1) {
+				$("#player-list ul li.selected").addClass("playing")
+				$("#jquery-player").jPlayer("setMedia", {
+					mp3: $("#player-list ul li.selected").attr("url")
+				});
+			}
+			$("#jquery-player").jPlayer("play");
+			$("#player-controls ul li.jp-stop.stopped").removeClass("stopped");
+			$(this).removeClass("pause");
+			$(this).addClass("playing");
 		}
-		$("#jquery-player").jPlayer("play");
-		$("#player-controls ul li.jp-stop.stopped").removeClass("stopped");
-		$(this).removeClass("pause");
-		$(this).addClass("playing");
 	});
 	$("#player-controls ul li.jp-stop").bind("click", function () {
 		if ($(this).hasClass("stopped")) {
