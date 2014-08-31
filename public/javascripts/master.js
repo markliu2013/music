@@ -102,7 +102,7 @@ $(document).ready(function () {
 	$("#music-file").uploadifive({
 		uploadScript: '/upload',
 		queueID: 'queue',
-		fileType: 'audio',
+		fileType: 'audio/mpeg',
 		auto: false,
 		buttonText: '',
 		width: 35,
