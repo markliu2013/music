@@ -286,6 +286,9 @@ img {
 .uploadifive-queue-item {
 	border-bottom: none;
 }
+.uploadifive-queue-item.error {
+	color: #f00;
+}
 #delete-form {
 	display: none;
 }
