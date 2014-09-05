@@ -1,19 +1,5 @@
 $(document).ready(function () {
-	jQuery.preLoadImages(
-		"/images/next-hover.png",
-		"/images/next-pressing.png",
-		"/images/pause-hover.png",
-		"/images/pause-pressing.png",
-		"/images/play-hover.png",
-		"/images/play-pressing.png",
-		"/images/prev-hover.png",
-		"/images/prev-pressing.png",
-		"/images/stop-hover.png",
-		"/images/stopped.png",
-		"/images/stop-pressing.png",
-		"/images/upload-hover.png",
-		"/images/upload-pressing.png"
-	);
+
 	$(document).bind("click", function (e) {
 		$("#player-list ul li.selected").removeClass("selected");
 	});
@@ -198,16 +184,3 @@ $(document).ready(function () {
 		}
 	})
 });
-/* pre-load images */
-(function ($) {
-	var cache = [];
-	// Arguments are image paths relative to the current page.
-	$.preLoadImages = function () {
-		var args_len = arguments.length;
-		for (var i = args_len; i--;) {
-			var cacheImage = document.createElement('img');
-			cacheImage.src = arguments[i];
-			cache.push(cacheImage);
-		}
-	}
-})(jQuery)

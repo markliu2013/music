@@ -84,62 +84,63 @@ img {
 	display: block;
 	width: 35px;
 	height: 35px;
+	background: url("../images/sprite.png") no-repeat;
 }
 #player-controls ul li.jp-stop a {
-	background: url("../images/stop.png") 0 0 no-repeat;
+	background-position: 0 -1280px;
 }
 #player-controls ul li.jp-stop:hover a {
-	background: url("../images/stop-hover.png") 0 0 no-repeat;
+	background-position: 0 -1110px;
 }
 #player-controls ul li.jp-stop.pressing a {
-	background: url("../images/stop-pressing.png") 0 0 no-repeat;
+	background-position: 0 -1195px;
 }
 #player-controls ul li.jp-stop.stopped a {
-	background: url("../images/stopped.png") 0 0 no-repeat;
+	background-position: 0 -1365px;
 	cursor: default;
 }
 #player-controls ul li.jp-prev a {
-	background: url("../images/prev.png") 0 0 no-repeat;
+	background-position: 0 -1025px;
 }
 #player-controls ul li.jp-prev:hover a {
-	background: url("../images/prev-hover.png") 0 0 no-repeat;
+	background-position: 0 -855px;
 }
 #player-controls ul li.jp-prev.pressing a {
-	background: url("../images/prev-pressing.png") 0 0 no-repeat;
+	background-position: 0 -940px;
 }
 #player-controls ul li.jp-play a {
 	width: 50px;
 	height: 50px;
 }
 #player-controls ul li.jp-play.pause a {
-	background: url("../images/play.png") 0 0 no-repeat;
+	background-position: 0 -755px;
 }
 #player-controls ul li.jp-play.pause:hover a {
-	background: url("../images/play-hover.png") 0 0 no-repeat;
+	background-position: 0 -555px;
 }
 #player-controls ul li.jp-play.pause.pressing a {
-	background: url("../images/play-pressing.png") 0 0 no-repeat;
+	background-position: 0 -655px;
 }
 #player-controls ul li.jp-play.playing a {
-	background: url("../images/pause.png") 0 0 no-repeat;
+	background-position: 0 -455px;
 }
 #player-controls ul li.jp-play.playing:hover a {
-	background: url("../images/pause-hover.png") 0 0 no-repeat;
+	background-position: 0 -255px;
 }
 #player-controls ul li.jp-play.playing.pressing a {
-	background: url("../images/pause-pressing.png") 0 0 no-repeat;
+	background-position: 0 -355px;
 }
 #player-controls ul li.jp-next a {
-	background: url("../images/next.png") 0 0 no-repeat;
+	background-position: 0 -170px;
 }
 #player-controls ul li.jp-next:hover a {
-	background: url("../images/next-hover.png") 0 0 no-repeat;
+	background-position: 0 0;
 }
 #player-controls ul li.jp-next.pressing a {
-	background: url("../images/next-pressing.png") 0 0 no-repeat;
+	background-position: 0 -85px;
 }
 .music-file-button {
-	background: url("../images/upload.png") 0 0 no-repeat;
+	background: url("../images/sprite.png") no-repeat 0 -1620px;
 	border: none;
 	cursor: pointer;
 }
@@ -147,10 +148,10 @@ img {
 	cursor: pointer;
 }
 .music-file-button:hover {
-	background: url("../images/upload-hover.png") 0 0 no-repeat;
+	background: url("../images/sprite.png") no-repeat 0 -1450px;
 }
 #player-controls ul li.jp-upload.pressing .music-file-button {
-	background: url("../images/upload-pressing.png") 0 0 no-repeat;
+	background-position: 0 -1535px;
 }
 #player-controls ul li a {
 	display: block;
@@ -251,7 +252,7 @@ img {
 	right: 85px;
 	width: 18px;
 	height: 12px;
-	background: url("../images/volumn.png") 0 0 no-repeat;
+	background: url("../images/sprite.png") no-repeat 0 -1705px;
 	text-indent: -9999em;
 }
 #queue {
