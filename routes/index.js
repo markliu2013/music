@@ -62,8 +62,10 @@ exports.delete = function (req, res) {
 }
 exports.play = function (req, res) {
 	var targetName = './upload/' + req.params.targetName;
-	res.setHeader('Content-type', 'audio');
+	res.setHeader('Content-type', 'audio/mpeg');
+	res.setHeader('Accept-Ranges', 'bytes');
 	var file = fs.readFileSync(targetName);
+	res.setHeader('Content-Length', file.length);
 	res.write(file, 'binary');
 	res.end();
 }
