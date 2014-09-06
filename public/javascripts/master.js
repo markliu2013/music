@@ -114,12 +114,7 @@ $(document).ready(function () {
 	$("#queue button").bind("click", function () {
 		$("#music-file").uploadifive('upload');
 	});
-	$("#player-controls ul li").bind("mousedown", function () {
-		$(this).addClass("pressing");
-	});
-	$("#player-controls ul li").bind("mouseup", function () {
-		$(this).removeClass("pressing");
-	});
+
 	$(document).bind("keydown", function (event) {
 		if (event.keyCode == 46) {
 			if ($("#player-list ul li.selected").length < 1) {

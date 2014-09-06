@@ -92,7 +92,7 @@ img {
 #player-controls ul li.jp-stop:hover a {
 	background-position: 0 -1110px;
 }
-#player-controls ul li.jp-stop.pressing a {
+#player-controls ul li.jp-stop:active a {
 	background-position: 0 -1195px;
 }
 #player-controls ul li.jp-stop.stopped a {
@@ -105,7 +105,7 @@ img {
 #player-controls ul li.jp-prev:hover a {
 	background-position: 0 -855px;
 }
-#player-controls ul li.jp-prev.pressing a {
+#player-controls ul li.jp-prev:active a {
 	background-position: 0 -940px;
 }
 #player-controls ul li.jp-play a {
@@ -118,7 +118,7 @@ img {
 #player-controls ul li.jp-play.pause:hover a {
 	background-position: 0 -555px;
 }
-#player-controls ul li.jp-play.pause.pressing a {
+#player-controls ul li.jp-play.pause:active a {
 	background-position: 0 -655px;
 }
 #player-controls ul li.jp-play.playing a {
@@ -127,7 +127,7 @@ img {
 #player-controls ul li.jp-play.playing:hover a {
 	background-position: 0 -255px;
 }
-#player-controls ul li.jp-play.playing.pressing a {
+#player-controls ul li.jp-play.playing:active a {
 	background-position: 0 -355px;
 }
 #player-controls ul li.jp-next a {
@@ -136,7 +136,7 @@ img {
 #player-controls ul li.jp-next:hover a {
 	background-position: 0 0;
 }
-#player-controls ul li.jp-next.pressing a {
+#player-controls ul li.jp-next:active a {
 	background-position: 0 -85px;
 }
 .music-file-button {
@@ -150,7 +150,7 @@ img {
 .music-file-button:hover {
 	background: url("../images/sprite.png") no-repeat 0 -1450px;
 }
-#player-controls ul li.jp-upload.pressing .music-file-button {
+#player-controls ul li.jp-upload:active .music-file-button {
 	background-position: 0 -1535px;
 }
 #player-controls ul li a {
