@@ -37,7 +37,7 @@
 			<div id="player-list">
 				<ul>
 					<% for (var i=0; i<musics.length; i++) { %>
-					<li id="<%= musics[i].id %>" class="<% if (i==0) { %><%= 'selected ' %><%}%>" data-url="<%= musics[i].targetName %>">
+					<li data-id="<%= musics[i].id %>" class="<% if (i==0) { %><%= 'selected ' %><%}%>" data-url="<%= musics[i].targetName %>">
 						<span class="num"><%= i+1 %>.</span>
 						<span class="name"><%= musics[i].artist %> - <%= musics[i].name %></span>
 						<span class="duration"></span>

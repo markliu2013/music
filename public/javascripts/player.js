@@ -8,7 +8,7 @@ Player.prototype = {
 		thisPlayer.audio = new Audio();
 		thisPlayer.audio.autoplay = false;
 		thisPlayer.audio.controls = false;
-		thisPlayer.audio.loop = true;
+		thisPlayer.audio.loop = false;
 		thisPlayer.audio.preload = 'auto';
 		thisPlayer.audio.addEventListener('loadedmetadata', function() {
 			thisPlayer.loadedcallback(this);
@@ -22,6 +22,10 @@ Player.prototype = {
 	},
 	pause: function() {
 		this.audio.pause();
+	},
+	stop: function() {
+		this.audio.pause();
+		this.audio.currentTime = 0;
 	}
 }
 

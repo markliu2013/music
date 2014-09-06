@@ -16,7 +16,7 @@ $(document).ready(function () {
 		$("#player-list ul li.selected").removeClass("selected");
 	});
 
-	$("#player-list ul").delegate("li", "dblclick", function () {
+	$("#player-list ul").delegate("li", "dblclick", function (e) {
 		$("#player-list ul li.selected").removeClass("selected");
 		$(this).addClass("selected");
 		$("#player-list ul li.playing").removeClass("playing");
@@ -26,22 +26,23 @@ $(document).ready(function () {
 		$("#player-controls ul li.jp-play").removeClass("pause");
 		$("#player-controls ul li.jp-play").addClass("playing");
 		$("#player-controls ul li.jp-stop.stopped").removeClass("stopped");
+		e.stopPropagation();
 	});
 	$("#player-list ul").delegate("li", "click", function (e) {
 		$("#player-list ul li.selected").removeClass("selected");
 		$(this).addClass("selected");
 		e.stopPropagation();
 	});
-	$("#player-controls ul li.jp-play").bind('click', function() {
+	$("#player-controls ul li.jp-play").bind('click', function(e) {
 		if ($(this).hasClass('playing')) {
 			player.pause();
 			$(this).removeClass("playing");
 			$(this).addClass("pause");
 		} else if ($(this).hasClass('pause')) {
 			if ($("#player-list ul li.playing").length < 1) {
-				var url = 'mp3/'+$("#player-list ul li.selected").attr("data-url");
+				var url = 'mp3/'+$("#player-list ul li.selected:first").attr("data-url");
 				player.play(url);
-				$("#player-list ul li.selected").addClass("playing");
+				$("#player-list ul li.selected:first").addClass("playing");
 				$("#player-controls ul li.jp-stop.stopped").removeClass("stopped");
 			} else {
 				player.play();
@@ -49,14 +50,19 @@ $(document).ready(function () {
 			$(this).removeClass("pause");
 			$(this).addClass("playing");
 		}
+		e.stopPropagation();
 	});
-	$("#player-controls ul li.jp-stop").bind("click", function () {
+	$("#player-controls ul li.jp-stop").bind("click", function (e) {
 		if ($(this).hasClass("stopped")) {
 			return;
 		}
-		$("#jquery-player").jPlayer("stop");
-		$("#jquery-player").jPlayer("clearMedia");
+		player.stop();
+		$("#player-list ul li.playing").removeClass("playing");
+		$("#player-list ul li.selected").removeClass("selected");
+		$("#player-list ul li:first-child").addClass("selected");
 		$(this).addClass("stopped");
+		$("#player-controls ul li.jp-play").removeClass('playing').addClass('pause');
+		e.stopPropagation();
 	});
 	$("#player-controls ul li.jp-prev").bind("click", function () {
 		var index_playing = $("#player-list ul li.playing").index();
@@ -66,9 +72,8 @@ $(document).ready(function () {
 		} else {
 			$("#player-list ul li").eq(index_playing - 1).addClass("playing");
 		}
-		$("#jquery-player").jPlayer("setMedia", {
-			mp3: $("#player-list ul li.playing").attr("url")
-		}).jPlayer("play");
+		var url = 'mp3/'+$("#player-list ul li.playing").attr("data-url");
+		player.play(url);
 		$("#player-controls ul li.jp-stop.stopped").removeClass("stopped");
 	});
 	$("#player-controls ul li.jp-next").bind("click", function () {
@@ -80,9 +85,8 @@ $(document).ready(function () {
 		} else {
 			$("#player-list ul li").eq(index_playing + 1).addClass("playing");
 		}
-		$("#jquery-player").jPlayer("setMedia", {
-			mp3: $("#player-list ul li.playing").attr("url")
-		}).jPlayer("play");
+		var url = 'mp3/'+$("#player-list ul li.playing").attr("data-url");
+		player.play(url);
 		$("#player-controls ul li.jp-stop.stopped").removeClass("stopped");
 	});
 	$("#music-file").uploadifive({
@@ -99,7 +103,7 @@ $(document).ready(function () {
 		onUploadComplete: function (file, data, response) {
 			var data = $.parseJSON(data);
 			var $lastItem = $('#player-list ul li:last-child');
-			var itemHtml = '<li id="' + data._id + '" class="clearfix" data-url="' + data.targetName + '">';
+			var itemHtml = '<li data-id="' + data._id + '" class="clearfix" data-url="' + data.targetName + '">';
 			itemHtml += '<span class="num">'+($lastItem.index()+2)+'.</span>';
 			itemHtml += '<span class="name">' + data.artist + ' - ' + data.name + '</span>';
 			itemHtml += '<span class="duration"></span>';
@@ -122,7 +126,7 @@ $(document).ready(function () {
 			}
 			var msg = "确定删除" + "吗？"
 			if (window.confirm(msg) == true) {
-				var musicId = $("#player-list ul li.selected").attr("id");
+				var musicId = $("#player-list ul li.selected").attr("data-id");
 				$.ajax({
 					url: musicId,
 					type: 'DELETE',
