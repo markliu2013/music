@@ -4,3 +4,4 @@ mongod -dbpath db
 去掉duration
 chrome请求了两次
 firefox不能上传
+修复播放列表三列的宽度

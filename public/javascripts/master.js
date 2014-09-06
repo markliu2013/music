@@ -1,28 +1,28 @@
 $(document).ready(function () {
 
+	function calculateDuration(time) {
+		var min = '00' + (time / 60 | 0), sec = time % 60;
+		sec = '00' + (sec | 0);
+		return [min.substr(-2), sec.substr(-2)].join(':');
+	}
+
+	function loadedCallBack(audio) {
+		$('#player-list ul li.playing .duration').text(calculateDuration(audio.duration));
+	}
+	var player = new Player(loadedCallBack);
+	player.init();
+
 	$(document).bind("click", function (e) {
 		$("#player-list ul li.selected").removeClass("selected");
 	});
-	$("#jquery-player").jPlayer({
-		play: function () {
-			$(this).jPlayer("pauseOthers");
-		},
-		ended: function () {
-			$("#player-controls ul li.jp-next").trigger("click");
-		},
-		swfPath: "javascripts",
-		supplied: "mp3",
-		cssSelectorAncestor: '#player-container'
-	});
+
 	$("#player-list ul").delegate("li", "dblclick", function () {
 		$("#player-list ul li.selected").removeClass("selected");
 		$(this).addClass("selected");
 		$("#player-list ul li.playing").removeClass("playing");
 		$(this).addClass("playing");
 		var url = 'play/'+$(this).attr("data-url");
-		$("#jquery-player").jPlayer("setMedia", {
-			mp3: url
-		}).jPlayer("play");
+		player.play(url);
 		$("#player-controls ul li.jp-play").removeClass("pause");
 		$("#player-controls ul li.jp-play").addClass("playing");
 		$("#player-controls ul li.jp-stop.stopped").removeClass("stopped");
@@ -34,7 +34,7 @@ $(document).ready(function () {
 	});
 	$("#player-controls ul li.jp-play").bind('click', function() {
 		if ($(this).hasClass('playing')) {
-			$("#jquery-player").jPlayer("pause");
+			player.pause();
 			$(this).removeClass("playing");
 			$(this).addClass("pause");
 		} else if ($(this).hasClass('pause')) {
@@ -44,7 +44,7 @@ $(document).ready(function () {
 					mp3: $("#player-list ul li.selected").attr("url")
 				});
 			}
-			$("#jquery-player").jPlayer("play");
+			player.play();
 			$("#player-controls ul li.jp-stop.stopped").removeClass("stopped");
 			$(this).removeClass("pause");
 			$(this).addClass("playing");
