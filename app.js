@@ -4,12 +4,10 @@
 
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
 var domain = require('domain');
-//var domain = require('logger');
 
 var env = process.env.NODE_ENV || 'development'
 var config = require('./config/config')[env]
@@ -34,15 +32,15 @@ if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
 
-//引入一个domain的中间件，将每一个请求都包裹在一个独立的domain中
-//domain来处理异常
+//domain middleware, every request wrap in domain
+//domain handle exception
 app.use(function (req, res, next) {
     var d = domain.create();
-    //监听domain的错误事件
+    //listen domain error
     d.on('error', function (err) {
         //logger.error(err);
         res.statusCode = 500;
-        res.json({sucess:false, messag: '服务器异常'});
+        res.json({sucess:false, messag: 'Server Exception'});
         d.dispose();
     });
 
@@ -56,9 +54,7 @@ d.on('error',function(err){
 });
 app.get('/', routes.index);
 app.post('/upload', routes.upload);
-app.get('/users', user.list);
 app.del('/:id', routes.delete);
-app.get('/play/:targetName', routes.play);
 
 // Bootstrap db connection
 // Connect to mongodb

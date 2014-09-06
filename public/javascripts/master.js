@@ -21,7 +21,7 @@ $(document).ready(function () {
 		$(this).addClass("selected");
 		$("#player-list ul li.playing").removeClass("playing");
 		$(this).addClass("playing");
-		var url = 'play/'+$(this).attr("data-url");
+		var url = 'mp3/'+$(this).attr("data-url");
 		player.play(url);
 		$("#player-controls ul li.jp-play").removeClass("pause");
 		$("#player-controls ul li.jp-play").addClass("playing");
@@ -39,13 +39,13 @@ $(document).ready(function () {
 			$(this).addClass("pause");
 		} else if ($(this).hasClass('pause')) {
 			if ($("#player-list ul li.playing").length < 1) {
-				$("#player-list ul li.selected").addClass("playing")
-				$("#jquery-player").jPlayer("setMedia", {
-					mp3: $("#player-list ul li.selected").attr("url")
-				});
+				var url = 'mp3/'+$("#player-list ul li.selected").attr("data-url");
+				player.play(url);
+				$("#player-list ul li.selected").addClass("playing");
+				$("#player-controls ul li.jp-stop.stopped").removeClass("stopped");
+			} else {
+				player.play();
 			}
-			player.play();
-			$("#player-controls ul li.jp-stop.stopped").removeClass("stopped");
 			$(this).removeClass("pause");
 			$(this).addClass("playing");
 		}

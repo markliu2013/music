@@ -8,8 +8,8 @@ Player.prototype = {
 		thisPlayer.audio = new Audio();
 		thisPlayer.audio.autoplay = false;
 		thisPlayer.audio.controls = false;
-		thisPlayer.audio.loop = false;
-		thisPlayer.audio.preload = 'metadata';
+		thisPlayer.audio.loop = true;
+		thisPlayer.audio.preload = 'auto';
 		thisPlayer.audio.addEventListener('loadedmetadata', function() {
 			thisPlayer.loadedcallback(this);
 		}, false);

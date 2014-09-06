@@ -1,7 +1,7 @@
 node_modules/
 .idea/
 db
-upload
+public/mp3/*.mp3
 *.zip
 gh-pages
 npm-debug.log
