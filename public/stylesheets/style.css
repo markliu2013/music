@@ -153,13 +153,12 @@ img {
 #player-list ul li .name {
 	float: left;
 	overflow: hidden;
-	width: 230px;
+	width: 220px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
 #player-list ul li .duration {
 	float: right;
-	width: 25px;
 }
 #player-list ul li:nth-child(2n) {
 	background-color: #2a2b3f;
