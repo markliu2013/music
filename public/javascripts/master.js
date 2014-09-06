@@ -5,11 +5,13 @@ $(document).ready(function () {
 		sec = '00' + (sec | 0);
 		return [min.substr(-2), sec.substr(-2)].join(':');
 	}
-
 	function loadedCallBack(audio) {
 		$('#player-list ul li.playing .duration').text(calculateDuration(audio.duration));
 	}
-	var player = new Player(loadedCallBack);
+	function endedCallBack(audio) {
+		$("#player-controls ul li.jp-next").trigger("click");
+	}
+	var player = new Player(loadedCallBack, endedCallBack);
 	player.init();
 
 	$(document).bind("click", function (e) {

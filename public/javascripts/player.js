@@ -1,6 +1,7 @@
-function Player(loadedcallback) {
+function Player(loadedcallback, endedcallback) {
 	this.audio = null;
 	this.loadedcallback = loadedcallback;
+	this.endedcallback = endedcallback;
 }
 Player.prototype = {
 	init: function() {
@@ -12,6 +13,9 @@ Player.prototype = {
 		thisPlayer.audio.preload = 'auto';
 		thisPlayer.audio.addEventListener('loadedmetadata', function() {
 			thisPlayer.loadedcallback(this);
+		}, false);
+		thisPlayer.audio.addEventListener('ended', function() {
+			thisPlayer.endedcallback(this);
 		}, false);
 	},
 	play: function(url) {
