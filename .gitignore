@@ -4,3 +4,4 @@ db
 upload
 *.zip
 gh-pages
+npm-debug.log
