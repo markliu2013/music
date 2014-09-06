@@ -58,6 +58,7 @@ app.get('/', routes.index);
 app.post('/upload', routes.upload);
 app.get('/users', user.list);
 app.del('/:id', routes.delete);
+app.get('/play/:targetName', routes.play);
 
 // Bootstrap db connection
 // Connect to mongodb

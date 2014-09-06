@@ -1,2 +1,6 @@
 cd C:\Users\mark\WebstormProjects\music
 mongod -dbpath db
+
+去掉duration
+chrome请求了两次
+firefox不能上传

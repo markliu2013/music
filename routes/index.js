@@ -20,9 +20,9 @@ exports.index = function (req, res) {
 	});
 };
 
-var target_dir = './public/mp3/';
+var target_dir = './upload/';
 exports.upload = function (req, res) {
-	var rootURL = req.protocol + "://" + req.get('host');
+	//var rootURL = req.protocol + "://" + req.get('host');
 	var form = new formidable.IncomingForm();
 	form.parse(req, function(err, fields, files) {
 		var timestamp = new Date().getTime();
@@ -43,7 +43,6 @@ exports.upload = function (req, res) {
 				music1.artist = "未知Artist"
 			}
 			music1.duration = new Date();
-			music1.url = rootURL + "/mp3/" + target_name;
 			music1.targetName = target_name;
 			music1.save(function() {mongoose.disconnect();});
             res.send(music1);
@@ -60,4 +59,11 @@ exports.delete = function (req, res) {
 			res.json({success:1});
 		})
 	});
+}
+exports.play = function (req, res) {
+	var targetName = './upload/' + req.params.targetName;
+	res.setHeader('Content-type', 'audio');
+	var file = fs.readFileSync(targetName);
+	res.write(file, 'binary');
+	res.end();
 }

@@ -6,7 +6,6 @@ var MusicSchema = new Schema({
 	name: { type: String, default: '' },
 	artist: { type: String, default: '' },
 	duration: { type: Date, default: '' },
-	url: { type: String, default: '' },
 	targetName: { type: String, default: '' }
 });
 

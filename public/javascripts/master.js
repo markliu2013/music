@@ -19,7 +19,7 @@ $(document).ready(function () {
 		$(this).addClass("selected");
 		$("#player-list ul li.playing").removeClass("playing");
 		$(this).addClass("playing");
-		var url = $(this).attr("url");
+		var url = 'play/'+$(this).attr("data-url");
 		$("#jquery-player").jPlayer("setMedia", {
 			mp3: url
 		}).jPlayer("play");
@@ -99,13 +99,7 @@ $(document).ready(function () {
 		onUploadComplete: function (file, data, response) {
 			var data = $.parseJSON(data);
 			var $lastItem = $('#player-list ul li:last-child');
-			var className = '';
-			if ($lastItem.hasClass('odd')) {
-				className = 'even';
-			} else {
-				className = 'odd';
-			}
-			var itemHtml = '<li id="' + data._id + '" class="' + className + ' clearfix" url="' + data.url + '">';
+			var itemHtml = '<li id="' + data._id + '" class="clearfix" data-url="' + data.targetName + '">';
 			itemHtml += '<span class="num">'+($lastItem.index()+2)+'.</span>';
 			itemHtml += '<span class="name">' + data.artist + ' - ' + data.name + '</span>';
 			itemHtml += '<span class="duration"></span>';
