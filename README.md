@@ -11,6 +11,7 @@ If you have any suggestion or bug to post, [click here](https://github.com/markl
 ```sh
   $ git clone --depth 1 https://github.com/markliu2013/music.git
   $ cd music
+  $ mkdir upload
   $ npm install
   $ node app.js or nohup node app.js &
 ```
