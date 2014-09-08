@@ -9,7 +9,7 @@ Player.prototype = {
 		window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame;
 		window.cancelAnimationFrame = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame || window.msCancelAnimationFrame;
 	},
-	init: function() {
+	init: function(opt) {
 		var thisPlayer = this;
 		thisPlayer._prepareAPI();
 		thisPlayer.context = new AudioContext();//should be only one instance
@@ -28,6 +28,9 @@ Player.prototype = {
 		thisPlayer.source = thisPlayer.context.createMediaElementSource(thisPlayer.audio);
 		thisPlayer.source.connect(thisPlayer.analyser);
 		thisPlayer.analyser.connect(thisPlayer.context.destination);
+		thisPlayer.columnWidth = opt && opt.columnWidth ? opt.columnWidth : 10;
+		thisPlayer.gapWidth = opt && opt.gapWidth ? opt.gapWidth : 2;
+
 	},
 	play: function(url) {
 		if (url) {
@@ -44,9 +47,24 @@ Player.prototype = {
 	},
 	drawSpectrum: function(canvas) {
 		var thisPlayer = this;
-		setInterval(function() {
+		var ctx = canvas.getContext('2d');
+		var gradient = ctx.createLinearGradient(0, 0, 0, 200);
+		gradient.addColorStop(1, '#6dc3f9');
+		gradient.addColorStop(0.5, '#516fd7');
+		gradient.addColorStop(0, '#70cbfc');
+		ctx.fillStyle = gradient;
 
-		}, 60);
+		setInterval(function() {
+			var array = new Uint8Array(thisPlayer.analyser.frequencyBinCount);
+			thisPlayer.analyser.getByteFrequencyData(array);
+			var marWidth = thisPlayer.columnWidth+thisPlayer.gapWidth;
+			var columnNum = canvas.width / marWidth;
+
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			for (var i=0; i<columnNum; i++) {
+				ctx.fillRect(i*marWidth,0,thisPlayer.columnWidth, Math.random()*200);
+			}
+		}, 50);
 	}
 }
 

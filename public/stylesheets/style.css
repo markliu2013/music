@@ -11,6 +11,9 @@ body {
 img {
 	border: none;
 }
+canvas {
+	display: block;
+}
 #page {
 	position: relative;
 	margin: 0 auto;
@@ -258,6 +261,7 @@ img {
 	position: absolute;
 	top: 50px;
 	left: -150px;
+	background: #000;
 }
 
 
