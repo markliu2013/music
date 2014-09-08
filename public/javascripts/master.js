@@ -13,6 +13,7 @@ $(document).ready(function () {
 	}
 	var player = new Player(loadedCallBack, endedCallBack);
 	player.init();
+	player.drawSpectrum(document.getElementById('spectrum-canvas'));
 
 	$(document).bind("click", function (e) {
 		$("#player-list ul li.selected").removeClass("selected");

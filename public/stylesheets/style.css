@@ -254,10 +254,11 @@ img {
 .uploadifive-queue-item.error {
 	color: #f00;
 }
-#delete-form {
-	display: none;
+#spectrum {
+	position: absolute;
+	top: 50px;
+	left: -150px;
 }
-
 
 
 
