@@ -18,6 +18,9 @@ Player.prototype = {
 		thisPlayer.audio.controls = false;
 		thisPlayer.audio.loop = false;
 		thisPlayer.audio.preload = 'auto';
+		thisPlayer.audio.volume = localStorage.getItem('volume');
+		$('#player-controls .jp-volume-bar-value').width((parseFloat(localStorage.getItem('volume'))*$("#player-controls .jp-volume-bar").width()));//it's not good here.
+		$(this).find('.jp-volume-bar-value').width();
 		thisPlayer.audio.addEventListener('loadedmetadata', function() {
 			thisPlayer.loadedcallback(this);
 		}, false);
@@ -48,6 +51,10 @@ Player.prototype = {
 		this.audio.pause();
 		this.audio.currentTime = 0;
 	},
+	setVolume: function(val) {
+		this.audio.volume = val;
+		localStorage.setItem('volume', val);
+	},
 	drawSpectrum: function(canvas) {
 		var thisPlayer = this;
 		var ctx = canvas.getContext('2d');
@@ -64,6 +71,7 @@ Player.prototype = {
 		var maxValue = 255;
 		var capPositionArray = [];
 		var capHeight = 2;
+
 		this.thread = setInterval(function() {
 			var array = new Uint8Array(thisPlayer.analyser.frequencyBinCount);
 			thisPlayer.analyser.getByteFrequencyData(array);
