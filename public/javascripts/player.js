@@ -1,12 +1,13 @@
 function Player(loadedcallback, endedcallback) {
 	this.loadedcallback = loadedcallback;
 	this.endedcallback = endedcallback;
-	this.thread = null;
 }
 Player.prototype = {
 	_prepareAPI: function() {
 		//fix browser vender for AudioContext
 		window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext;
+		window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame;
+		window.cancelAnimationFrame = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame || window.msCancelAnimationFrame;
 	},
 	init: function(opt) {
 		var thisPlayer = this;
@@ -39,15 +40,15 @@ Player.prototype = {
 			this.audio.src = url;
 		}
 		this.audio.play();
-		clearInterval(this.thread);
+		cancelAnimationFrame(this.animationThread);
 		this.drawSpectrum(document.getElementById('spectrum-canvas'));
 	},
 	pause: function() {
-		clearInterval(this.thread);
+		cancelAnimationFrame(this.animationThread);
 		this.audio.pause();
 	},
 	stop: function() {
-		clearInterval(this.thread);
+		cancelAnimationFrame(this.animationThread);
 		this.audio.pause();
 		this.audio.currentTime = 0;
 	},
@@ -71,8 +72,7 @@ Player.prototype = {
 		var maxValue = 255;
 		var capPositionArray = [];
 		var capHeight = 2;
-
-		this.thread = setInterval(function() {
+		function drawCol() {
 			var array = new Uint8Array(thisPlayer.analyser.frequencyBinCount);
 			thisPlayer.analyser.getByteFrequencyData(array);
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -88,7 +88,9 @@ Player.prototype = {
 				ctx.fillStyle = gradient;
 				ctx.fillRect(i*(columnWidth+columGap),canvas.height-value+capHeight,columnWidth, cHeight);
 			}
-		}, 20);
+			thisPlayer.animationThread = requestAnimationFrame(drawCol);
+		}
+		thisPlayer.animationThread = requestAnimationFrame(drawCol);
 	}
 }
 
