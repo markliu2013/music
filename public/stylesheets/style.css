@@ -264,7 +264,15 @@ canvas {
 	background: #000;
 }
 
-
+@media screen and (max-width: 960px) {
+	#queue, #spectrum, #uploadifive-music-file {
+		display: none;
+	}
+	#page {
+		width: 100%;
+		padding-top: 0;
+	}
+}
 
 
 
