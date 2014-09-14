@@ -123,7 +123,7 @@ $(document).ready(function () {
 	$("#player-controls .jp-volume-bar").bind('click', function(e) {
 		player.setVolume(e.offsetX/$(this).width());
 		$(this).find('.jp-volume-bar-value').width(e.offsetX);
-	})
+	});
 	$(document).bind("keydown", function (event) {
 		if (event.keyCode == 46) {
 			if ($("#player-list ul li.selected").length < 1) {

@@ -1,6 +1,7 @@
 function Player(loadedcallback, endedcallback) {
 	this.loadedcallback = loadedcallback;
 	this.endedcallback = endedcallback;
+	this.status = 0;//0 not init  1 just init   2 playing  3 paused  4 stopped
 }
 Player.prototype = {
 	_prepareAPI: function() {
@@ -18,7 +19,7 @@ Player.prototype = {
 		thisPlayer.audio.autoplay = false;
 		thisPlayer.audio.controls = false;
 		thisPlayer.audio.loop = false;
-		thisPlayer.audio.preload = 'auto';
+		thisPlayer.audio.preload = 'metadata';
 		thisPlayer.audio.volume = localStorage.getItem('volume');
 		$('#player-controls .jp-volume-bar-value').width((parseFloat(localStorage.getItem('volume'))*$("#player-controls .jp-volume-bar").width()));//it's not good here.
 		$(this).find('.jp-volume-bar-value').width();
@@ -33,24 +34,48 @@ Player.prototype = {
 		thisPlayer.analyser.connect(thisPlayer.context.destination);
 		thisPlayer.columnWidth = opt && opt.columnWidth ? opt.columnWidth : 10;
 		thisPlayer.gapWidth = opt && opt.gapWidth ? opt.gapWidth : 2;
-
+		thisPlayer.audio.addEventListener('canplay', function() {
+			$('#player-container .progress.loading').removeClass('loading');
+			clearInterval(thisPlayer.progressThread);
+			thisPlayer.drawProgress();
+		});
+		$("#player-container .progress").bind('click', function(e) {
+			if (thisPlayer.status == 2) {
+				$('#player-container .progress').addClass('loading');
+				var percent = e.offsetX/$(this).width();
+				thisPlayer.audio.currentTime = thisPlayer.audio.duration * percent;
+				var currentTime = thisPlayer.audio.currentTime;
+				var bufferedTime = thisPlayer.audio.buffered.end(thisPlayer.audio.buffered.length-1);
+				var currentWidth = currentTime / thisPlayer.audio.duration * $(this).width();;
+				var bufferWidth = bufferedTime / thisPlayer.audio.duration * $(this).width();;
+				$('#player-container .progress .play-bar').width(currentWidth);
+				$('#player-container .progress .loaded-bar').width(bufferWidth);
+			}
+		});
+		this.status = 1;
 	},
 	play: function(url) {
 		if (url) {
 			this.audio.src = url;
 		}
+		$('#player-container .progress').addClass('loading');
 		this.audio.play();
 		cancelAnimationFrame(this.animationThread);
 		this.drawSpectrum(document.getElementById('spectrum-canvas'));
+		this.status = 2;
 	},
 	pause: function() {
 		cancelAnimationFrame(this.animationThread);
+		clearInterval(this.progressThread);
 		this.audio.pause();
+		this.status = 3;
 	},
 	stop: function() {
 		cancelAnimationFrame(this.animationThread);
+		clearInterval(this.progressThread);
 		this.audio.pause();
 		this.audio.currentTime = 0;
+		this.status = 4;
 	},
 	setVolume: function(val) {
 		this.audio.volume = val;
@@ -91,6 +116,24 @@ Player.prototype = {
 			thisPlayer.animationThread = requestAnimationFrame(drawCol);
 		}
 		thisPlayer.animationThread = requestAnimationFrame(drawCol);
+	},
+	drawProgress: function() {
+		var thisPlayer = this;
+		var audio = thisPlayer.audio;
+		var duration = audio.duration;
+		var $progress = $('#player-container .progress');
+		var $playBar = $('#player-container .play-bar');
+		var $loadedBar = $('#player-container .loaded-bar');
+		var progressWidth = $('#player-container .progress').width();
+		function calProgress() {
+			var currentTime = audio.currentTime;
+			var bufferedTime = audio.buffered.end(audio.buffered.length-1);
+			var currentWidth = currentTime / duration * progressWidth;
+			var bufferWidth = bufferedTime / duration * progressWidth;
+			$('#player-container .progress .play-bar').width(currentWidth);
+			$('#player-container .progress .loaded-bar').width(bufferWidth);
+		}
+		thisPlayer.progressThread = setInterval(calProgress, 1000);
 	}
 }
 

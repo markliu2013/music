@@ -25,8 +25,32 @@ canvas {
 	width: 310px;
 }
 #player-container .progress {
-	background: #5a5d8e;
-	height: 15px;
+	position: relative;
+	height: 11px;
+	background: #c3c3c3;
+	border-radius: 5px;
+	cursor: pointer;
+}
+#player-container .progress.loading {
+	background: url("../images/seeking.gif") 0 0 repeat-x;
+}
+#player-container .progress div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+}
+#player-container .progress .play-bar {
+	z-index: 5;
+	background: #1fb8e4;
+	cursor: pointer;
+	border-radius: 5px;
+}
+#player-container .progress .loaded-bar {
+	z-index: 4;
+	background: #7a7a7a;
+	cursor: pointer;
+	border-radius: 5px;
 }
 #player-controls {
 	position: relative;

@@ -5,3 +5,5 @@ mongod -dbpath db
 chrome请求了两次
 firefox不能上传
 修复播放列表三列的宽度
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_media_formats
