@@ -57,6 +57,8 @@ Player.prototype = {
 	play: function(url) {
 		if (url) {
 			this.audio.src = url;
+			$('#player-container .progress .play-bar').width(0);
+			$('#player-container .progress .loaded-bar').width(0);
 		}
 		$('#player-container .progress').addClass('loading');
 		this.audio.play();
