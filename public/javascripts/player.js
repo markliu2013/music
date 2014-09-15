@@ -20,7 +20,7 @@ Player.prototype = {
 		thisPlayer.audio.controls = false;
 		thisPlayer.audio.loop = false;
 		thisPlayer.audio.preload = 'metadata';
-		thisPlayer.audio.volume = localStorage.getItem('volume');
+		thisPlayer.audio.volume = localStorage.getItem('volume') || 1.0;
 		$('#player-controls .jp-volume-bar-value').width((parseFloat(localStorage.getItem('volume'))*$("#player-controls .jp-volume-bar").width()));//it's not good here.
 		$(this).find('.jp-volume-bar-value').width();
 		thisPlayer.audio.addEventListener('loadedmetadata', function() {
@@ -45,7 +45,12 @@ Player.prototype = {
 				var percent = e.offsetX/$(this).width();
 				thisPlayer.audio.currentTime = thisPlayer.audio.duration * percent;
 				var currentTime = thisPlayer.audio.currentTime;
-				var bufferedTime = thisPlayer.audio.buffered.end(thisPlayer.audio.buffered.length-1);
+				var bufferedTime = null;
+				try {
+					bufferedTime = audio.buffered.end(audio.buffered.length-1)
+				} catch(error) {
+					bufferedTime = audio.currentTime;
+				}
 				var currentWidth = currentTime / thisPlayer.audio.duration * $(this).width();;
 				var bufferWidth = bufferedTime / thisPlayer.audio.duration * $(this).width();;
 				$('#player-container .progress .play-bar').width(currentWidth);
@@ -129,7 +134,12 @@ Player.prototype = {
 		var progressWidth = $('#player-container .progress').width();
 		function calProgress() {
 			var currentTime = audio.currentTime;
-			var bufferedTime = audio.buffered.end(audio.buffered.length-1);
+			var bufferedTime = null;
+			try {
+				bufferedTime = audio.buffered.end(audio.buffered.length-1)
+			} catch(error) {
+				bufferedTime = audio.currentTime;
+			}
 			var currentWidth = currentTime / duration * progressWidth;
 			var bufferWidth = bufferedTime / duration * progressWidth;
 			$('#player-container .progress .play-bar').width(currentWidth);
