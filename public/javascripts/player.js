@@ -42,17 +42,17 @@ Player.prototype = {
 		$("#player-container .progress").bind('click', function(e) {
 			if (thisPlayer.status == 2) {
 				$('#player-container .progress').addClass('loading');
-				var percent = e.offsetX/$(this).width();
+				var percent = e.offsetX / $(this).width();
 				thisPlayer.audio.currentTime = thisPlayer.audio.duration * percent;
 				var currentTime = thisPlayer.audio.currentTime;
 				var bufferedTime = null;
 				try {
-					bufferedTime = audio.buffered.end(audio.buffered.length-1)
+					bufferedTime = thisPlayer.audio.buffered.end(audio.buffered.length-1)
 				} catch(error) {
-					bufferedTime = audio.currentTime;
+					bufferedTime = thisPlayer.audio.currentTime;
 				}
-				var currentWidth = currentTime / thisPlayer.audio.duration * $(this).width();;
-				var bufferWidth = bufferedTime / thisPlayer.audio.duration * $(this).width();;
+				var currentWidth = currentTime / thisPlayer.audio.duration * $(this).width();
+				var bufferWidth = bufferedTime / thisPlayer.audio.duration * $(this).width();
 				$('#player-container .progress .play-bar').width(currentWidth);
 				$('#player-container .progress .loaded-bar').width(bufferWidth);
 			}
