@@ -129,7 +129,7 @@ $(document).ready(function () {
 			if ($("#player-list ul li.selected").length < 1) {
 				return;
 			}
-			var msg = "确定删除" + "吗？"
+			var msg = "Are you sure?";
 			if (window.confirm(msg) == true) {
 				var musicId = $("#player-list ul li.selected").attr("data-id");
 				$.ajax({
