@@ -6,7 +6,7 @@ If you have any suggestion or bug to post, [click here](https://github.com/markl
 
 ## Install
 
-**NOTE:** Firstly you need to install [MongoDB](http://www.markliublog.com/installing-mongodb-on-linux.html) and [NodeJS](https://github.com/joyent/node/wiki/installation).
+**NOTE:** Firstly you need to install [MongoDB](http://blog.whlcsj.com/installing-mongodb-on-linux.html) and [NodeJS](https://github.com/joyent/node/wiki/installation).
 
 ```sh
   $ git clone --depth 1 https://github.com/markliu2013/music.git
