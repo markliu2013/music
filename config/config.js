@@ -1,5 +1,5 @@
 module.exports = {
 	development: {
-		db: 'mongodb://localhost/music'
+		db: 'mongodb://127.0.0.1/music'
 	}
 }
