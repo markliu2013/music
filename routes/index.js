@@ -58,3 +58,26 @@ exports.delete = function (req, res) {
 		})
 	});
 }
+exports.encodeBase64 = function (req, res) {
+	var result = '';
+	if (req.query.s) {
+		result = Buffer.from(req.query.s).toString('base64');
+	}
+	res.json({
+		result: result
+	});
+}
+exports.decodeBase64 = function (req, res) {
+	var result = '';
+	if (req.query.s) {
+		result = Buffer.from(req.query.s, 'base64').toString('ascii');
+	}
+	res.json({
+		result: result
+	});
+}
+exports.userAgent = function (req, res) {
+	res.json({
+		result: req.get('User-Agent')
+	});
+}

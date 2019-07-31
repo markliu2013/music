@@ -1,7 +1,3 @@
-/**
- * Module dependencies.
- */
-
 var express = require('express');
 var routes = require('./routes');
 var http = require('http');
@@ -55,6 +51,9 @@ d.on('error',function(err){
 app.get('/', routes.index);
 app.post('/upload', routes.upload);
 app.del('/:id', routes.delete);
+app.get('/encodeBase64', routes.encodeBase64);
+app.get('/decodeBase64', routes.decodeBase64);
+app.get('/userAgent', routes.userAgent);
 
 // Bootstrap db connection
 // Connect to mongodb
@@ -73,8 +72,6 @@ mongoose.connection.on('error', function (err) {
 mongoose.connection.on('disconnected', function () {
 	connect()
 })
-
-
 
 d.run(function() {
     http.createServer(app).listen(app.get('port'), function () {

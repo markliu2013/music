@@ -1,5 +1,6 @@
-node_modules/
-.idea/
+node_modules
+.idea
+.DS_Store
 db
 public/mp3/*.mp3
 *.zip
