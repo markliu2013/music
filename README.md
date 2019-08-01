@@ -18,6 +18,12 @@ If you have any suggestion or bug to post, [click here](https://github.com/markl
 
 Then visit [http://localhost:3000/](http://localhost:3000/)
 
+## Docker
+Install docker and docker compose
+
+
+docker-compose up or docker-compose up -d
+
 ## Related modules
 
 1. [express](http://expressjs.com/) - MVC skeleton.
