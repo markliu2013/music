@@ -14,7 +14,7 @@ exports.index = function (req, res) {
 	}
 	Music.list(options, function(err, musics) {
 		res.render('index', {
-			title: 'Music Page | Mark Liu Blog',
+			title: 'Music Page | Zfwhub',
 			musics: musics
 		});
 	});
