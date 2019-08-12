@@ -289,9 +289,6 @@ canvas {
 }
 
 @media screen and (max-width: 960px) {
-	#queue, #uploadifive-music-file {
-		display: none;
-	}
 	#spectrum {
 		position: static;
 	}
@@ -304,6 +301,22 @@ canvas {
 	}
 	#player {
 		width: 100%;
+	}
+	#queue {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: auto;
+		height: 100px;
+	}
+	#queue .note {
+		display: none;
+	}
+	#queue button {
+		left: 50%;
+		margin-left: -30px;
+		width: 60px;
+		background: #fff;
 	}
 }
 

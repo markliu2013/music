@@ -10,6 +10,8 @@ services:
       - network
   app:
     container_name: music_app
+    volumes:
+      - ./public:/app/public
     restart: always
     build: .
     ports:
