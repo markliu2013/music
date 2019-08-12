@@ -94,7 +94,6 @@ $(document).ready(function () {
 	$("#music-file").uploadifive({
 		uploadScript: '/upload',
 		queueID: 'queue',
-		fileType: 'audio/mp3',
 		auto: false,
 		buttonText: '',
 		width: 35,
