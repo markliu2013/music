@@ -11,8 +11,8 @@ $(document).ready(function () {
 	function endedCallBack(audio) {
 		$("#player-controls ul li.jp-next").trigger("click");
 	}
+
 	var player = new Player(loadedCallBack, endedCallBack);
-	player.init();
 
 	$(document).bind("click", function (e) {
 		$("#player-list ul li.selected").removeClass("selected");
@@ -94,7 +94,7 @@ $(document).ready(function () {
 	$("#music-file").uploadifive({
 		uploadScript: '/upload',
 		queueID: 'queue',
-		fileType: 'audio/mp3',
+		fileType: ['audio/mp3', 'audio/mpeg'],
 		auto: false,
 		buttonText: '',
 		width: 35,

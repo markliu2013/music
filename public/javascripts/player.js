@@ -2,6 +2,7 @@ function Player(loadedcallback, endedcallback) {
 	this.loadedcallback = loadedcallback;
 	this.endedcallback = endedcallback;
 	this.status = 0;//0 not init  1 just init   2 playing  3 paused  4 stopped
+	this.isInited = false;
 }
 Player.prototype = {
 	_prepareAPI: function() {
@@ -11,6 +12,7 @@ Player.prototype = {
 		window.cancelAnimationFrame = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame || window.msCancelAnimationFrame;
 	},
 	init: function(opt) {
+		if (this.isInited) return false;
 		var thisPlayer = this;
 		thisPlayer._prepareAPI();
 		thisPlayer.context = new AudioContext();//should be only one instance
@@ -58,8 +60,10 @@ Player.prototype = {
 			}
 		});
 		this.status = 1;
+		this.isInited = true;
 	},
 	play: function(url) {
+		this.init();
 		if (url) {
 			this.audio.src = url;
 			$('#player-container .progress .play-bar').width(0);

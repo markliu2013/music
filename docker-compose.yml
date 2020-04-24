@@ -10,8 +10,12 @@ services:
       - network
   app:
     container_name: music_app
+    privileged: true
     #volumes:
-    #  - ./public:/app/public
+      # for develop mode
+      #- ./public/javascripts/master.js:/app/public/javascripts/master.js
+      #- ./public/javascripts/player.js:/app/public/javascripts/player.js
+      #- ./views:/app/views
     restart: always
     build: .
     ports:
