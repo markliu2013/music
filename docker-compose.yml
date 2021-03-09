@@ -16,7 +16,7 @@ services:
       #- ./public/javascripts/master.js:/app/public/javascripts/master.js
       #- ./public/javascripts/player.js:/app/public/javascripts/player.js
       #- ./views:/app/views
-    restart: always
+    #restart: always
     build: .
     ports:
       - "3000:3000"
