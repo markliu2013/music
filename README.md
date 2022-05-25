@@ -1,7 +1,7 @@
 # NodeJS Music Player
 
 This is a music player built use [NodeJS](http://nodejs.org/) and [MongoDB](http://mongodb.org/).
-Read the [blog article](https://mark.zfwhub.com/html5-audio-player.html) about how it built or [try to play](http://demo.zfwhub.com:3000).
+Read the [blog article](https://mark.zfwhub.com/html5-audio-player.html) about how it built or [try to play](http://demo.jiukuaitech.com:3000/).
 If you have any suggestion or bug to post, [click here](https://github.com/markliu2013/music/issues/new).
 
 ## Install
