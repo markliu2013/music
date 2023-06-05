@@ -3,6 +3,8 @@
 This is a music player built use [NodeJS](http://nodejs.org/) and [MongoDB](http://mongodb.org/).
 If you have any suggestion or bug to post, [click here](https://github.com/markliu2013/music/issues/new).
 
+![Screen Shot](https://raw.githubusercontent.com/markliu2013/music/3d9490c4ef86e121376a157437d19417ebb697b9/screen_shot.png "Screen Shot")
+
 ## Install
 
 **NOTE:** Firstly you need to install [MongoDB](https://docs.mongodb.com/manual/installation/) and [NodeJS](https://github.com/joyent/node/wiki/installation).
